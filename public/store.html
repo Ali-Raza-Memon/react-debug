@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .store-container {
+      text-align: center;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .section {
+      margin: 20px 0;
+    }
+    .section img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .section img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .section h2 {
+      font-size: 2em;
+      margin: 10px 0;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="store-container" id="storeContainer">
+    <!-- Images will be dynamically added here -->
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Array of image objects with src, alt, and title properties
+      const images = [
+        { src: '../src/assets/image4.jpg', alt: 'Medical Equipment', title: 'Medical Equipment' },
+        { src: '../src/assets/image5.jpg', alt: 'Lab Equipment', title: 'Lab Equipment' },
+        { src: '../src/assets/image6.jpg', alt: 'Dental Equipment', title: 'Dental Equipment' }
+      ];
+
+      // Select the container where images will be appended
+      const storeContainer = document.getElementById('storeContainer');
+
+      // Loop through images array and create img elements dynamically
+      images.forEach(image => {
+        // Create img element
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.alt;
+
+        // Optional: Set title attribute if available
+        if (image.title) {
+          img.title = image.title;
+        }
+
+        // Add onclick event to open contact page
+        img.onclick = function() {
+          openContactPage();
+        };
+
+        // Append img to storeContainer
+        const section = document.createElement('div');
+        section.classList.add('section');
+        section.appendChild(img);
+
+        // Create h2 element for image title
+        const h2 = document.createElement('h2');
+        h2.textContent = image.alt;
+        section.appendChild(h2);
+
+        storeContainer.appendChild(section);
+      });
+
+      // Function to open contact page in new tab
+      function openContactPage() {
+        window.open('contact.html', '_blank');
+      }
+    });
+  </script>
+</body>
+</html>
